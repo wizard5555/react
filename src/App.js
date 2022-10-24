@@ -1,30 +1,17 @@
-import {Button, TextField} from "@mui/material";
-import {useState} from "react";
-import "./styles.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import FormEndereco from "./pages/FormEndereco"
+import Products from "./pages/FormEndereco/Products"
 
-export default function App () {
-  const [cep, setCep] = useState('');
-  const [logradouro, setLogradouro] = useState('');
-  const [bairro, setBairro] = useState('');
-
-  const buscarEndereco = () => {
-      fetch(`http://viacep.com.br/ws/${cep}/json`)
-        .then(res => res.json())
-        .then(dados => {
-          setBairro(dados.bairro);
-          setLogradouro(dados.logradouro);
-        });
-  };
-
+export default function App() {
   return (
-    <div className="endereco">
-      <form>
-        <TextField onBlur={buscarEndereco} onChange={event => setCep(event.target.value)} value={cep} label="CEP" fullWidth/>
-        
-        <TextField value={logradouro} onChange={event => setLogradouro(event.target.value)} label="Logradouro" fullWidth/>
-
-        <TextField value={bairro} onChange={event => setBairro(event.target.value)} label="Bairro" fullWidth/>
-      </form>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<h1>Olá mundo!</h1>} />
+          <Route path="/listar" element={<Products/>} />
+          <Route path="/endereco" element={<FormEndereco />}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
