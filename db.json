@@ -1,0 +1,16 @@
+{
+    "produtos": [
+        {
+            "id": 1,
+            "nome": "Pizza",
+            "valor": 29.90,
+            "foto": "https://img.cybercook.com.br/receitas/527/massa-de-pizza-7-840x480.jpeg?q=75"
+        },
+        {
+            "id": 2,
+            "nome": "Pratinho Gourmet",
+            "valor": 12.90,
+            "foto"  : "https://saboresdacidade.com/wp-content/uploads/2018/11/pra%C3%A7a_lago_jacarey_comida_de_rua_fortaleza-4.jpg"
+        }
+    ]
+}

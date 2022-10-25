@@ -1,33 +1,37 @@
 import React from "react";
 import "./styles.css";
-import { CardActionArea, CardContent, Card, Divider } from "@mui/material";
+import { CardActionArea, CardContent, Card, Divider, CardMedia, Typography, Button} from "@mui/material";
+import pizza from "./pizza.jpg";
 
 export default function Products() {
     const [items, setItems] = React.useState([]);
 
     React.useEffect(() => {
-        setItems([
-            {
-                id: 1,
-                nome: "Pizza",
-                valor: 29.90
-            },
-            {
-                id: 2,
-                nome: "Pratinho Gourmet",
-                valor: 12.90
-            }
-        ])
+        fetch('http://localhost:8000/produtos')
+            .then(res => res.json())
+            .then(dados => setItems(dados));
+        // setItems()
     }, []);
 
     const CadaProduto = (props) => {
         return (
             <Card style={{marginTop: '10px'}}>
                 <CardActionArea>
+                    <CardMedia component="img" height="200" image={props.foto}/>
+
                     <CardContent>
-                        {props.nome} {props.valor}
+                        <Typography variant="h5">{props.nome}</Typography>
                     </CardContent>
                 </CardActionArea>
+
+            <CardContent>
+                <Divider />
+                <div style={{display: 'flex', marginTop: 10, justifyContent: 'space-between'}}>
+                <Typography>R$ {props.valor}</Typography>
+
+                <Button align="right" variant="contained" color="success">Add</Button>
+                </div>
+            </CardContent>
             </Card>
         )
     }
